@@ -1,32 +1,9 @@
 # bihutools
 
-### 1.自动关注脚本
-_将本段代码拷贝到支持jQuery的网页中执行或直接提取接口地址自行实现本段代码_
-> userid 你的用户ID
-> accesstoken 登录后可获得
-> subuserid 你将关注的用户ID
-```javascript 
-var subuserid = 8559;
-var userid = 0;
-var accesstoken = "";
-var followUrl = "https://be.bihu.com:8102/bihube-pc/api/content/follow?userId=" + userid + "&accessToken=" + accesstoken + "&subjectUserId=";
+### 1.登录获取accesstoken，userid
+### 2.自动关注功能
 
-function loop(id) {
-    setTimeout(function () {
-        console.log('----------------')
-        $.ajax({
-            url: followUrl + id,
-            timeout: 3000,
-            method:'POST',
-            success: function (data) {
-                console.log(id, '====', data);
-                id = parseInt(id) + 1;
-                loop(id);
-            },
-            error: function (e) {
-                console.error(e);
-            }
-        })
-    }, 1000)
-}
-```
+### 3.尚有自动监控大佬文章发布功能，自动评论点赞功能，考虑到币乎系统尚不稳定，此类代码若公开似乎不太适宜
+如有需要请支付备注联系
+![微信支付码](https://github.com/cheergoh/bihutools/blob/master/wxpay_qrcode.png)
+
