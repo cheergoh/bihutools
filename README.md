@@ -17,7 +17,8 @@ function loop(id) {
         $.ajax({
             url: followUrl + id,
             timeout: 3000,
-            success: function (data) {
+            method:'POST',
+            success: function (data) {
                 console.log(id, '====', data);
                 id = parseInt(id) + 1;
                 loop(id);
