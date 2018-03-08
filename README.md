@@ -1,9 +1,15 @@
 # bihutools
 
-### 1.登录获取accesstoken，userid
-### 2.自动关注功能
+代码写的比较随意，将就着看吧，不懂得或者需要自定义功能的可以扫码找我
 
-### 3.尚有自动监控大佬文章发布功能，自动评论点赞功能，考虑到币乎系统尚不稳定，此类代码若公开似乎不太适宜
-如有需要请支付备注联系
+### 1.登录获取accesstoken，userid
+### 2.批量关注
+### 3.批量取关，保持与粉丝互相关注
+### 4.获取粉丝列表
+
+
+##使用说过
+在config.json文件中填写账号信息(loginName，password)（放心用，直连币乎的api，作者不会拿到你的信息哦）
+
 ![微信支付码](https://github.com/cheergoh/bihutools/blob/master/wxpay_qrcode.png)
 

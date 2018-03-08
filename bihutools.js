@@ -14,7 +14,8 @@ let hostlistUrl = 'https://be02.bihu.com/bihube-pc/api/content/show/hotArtList';
 let fanslistUrl = 'https://be03.bihu.com/bihube-pc/api/content/show/getUserFansList';
 let unfollowUrl = 'https://be03.bihu.com/bihube-pc/api/content/unFollow';
 let myfollowUrl = 'https://be02.bihu.com/bihube-pc/api/content/show/getUserFollowList';
-
+let fanslistArr = [];
+let fansPageNum = 1;
 
 function updateJsonConf() {
     let fs = require('fs');
@@ -90,9 +91,6 @@ function hotlist(pageNum) {
     }, 1000);
 }
 
-let fanslistArr = [];
-let fansPageNum = 1;
-
 function fansList(callback) {
     var param = {
         userId: config.userid,
@@ -133,14 +131,6 @@ async function unfollow(subid) {
     let result = await http.asyncPostForm(unfollowUrl, param);
     logger.info('取关此人：' + subid + ',' + JSON.stringify(result.content))
 }
-
-// getlogininfo(password);
-
-// doloop(subuserid);
-
-// hotlist(1);
-// fansList(1);
-// unfollow(8193);
 
 function myfollow(pageNum) {
     let param = {
