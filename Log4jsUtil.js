@@ -4,7 +4,7 @@
 
 //加载log4js
 log4js = require("log4js");
-let logconfig = require('../Test/logconfig.json');
+let logconfig = require('./logconfig.json');
 log4js.configure(logconfig.config);
 let logger = log4js.getLogger('service');
 

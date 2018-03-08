@@ -4,39 +4,39 @@
 
 const pbkdf2 = require('pbkdf2')
 
-let t = {
+var t = {
     wordsToBytes: function (e) {
-        for (let t = [], n = 0; n < 32 * e.length; n += 8) t.push(e[n >>> 5] >>> 24 - n % 32 & 255);
+        for (var t = [], n = 0; n < 32 * e.length; n += 8) t.push(e[n >>> 5] >>> 24 - n % 32 & 255);
         return t
     },
     bytesToWords: function (e) {
-        for (let t = [], n = 0, r = 0; n < e.length; n++, r += 8) t[r >>> 5] |= e[n] << 24 - r % 32;
+        for (var t = [], n = 0, r = 0; n < e.length; n++, r += 8) t[r >>> 5] |= e[n] << 24 - r % 32;
         return t
     },
     bytesToString: function (e) {
-        for (let t = [], n = 0; n < e.length; n++)
+        for (var t = [], n = 0; n < e.length; n++)
             t.push(String.fromCharCode(e[n]));
         return t.join("")
     },
     bytesToHex: function (e) {
-        for (let t = [], n = 0; n < e.length; n++)
+        for (var t = [], n = 0; n < e.length; n++)
             t.push((e[n] >>> 4).toString(16)),
                 t.push((15 & e[n]).toString(16));
         return t.join("")
     },
 };
-let n = {
+var n = {
     stringToBytes: function (e) {
         return n.bin.stringToBytes(unescape(encodeURIComponent(e)))
     },
-    'bin': {
+    bin: {
         stringToBytes: function (e) {
-            for (let t = [], n = 0; n < e.length; n++)
+            for (var t = [], n = 0; n < e.length; n++)
                 t.push(255 & e.charCodeAt(n));
             return t
         },
         bytesToString: function (e) {
-            for (let t = [], n = 0; n < e.length; n++)
+            for (var t = [], n = 0; n < e.length; n++)
                 t.push(String.fromCharCode(e[n]));
             return t.join("")
         }
@@ -44,7 +44,7 @@ let n = {
     endian: function (e) {
         if (e.constructor == Number)
             return 16711935 & n.rotl(e, 8) | 4278255360 & n.rotl(e, 24);
-        for (let t = 0; t < e.length; t++)
+        for (var t = 0; t < e.length; t++)
             e[t] = n.endian(e[t]);
         return e
     },
@@ -57,15 +57,14 @@ let n = {
 };
 i = function (e, n) {
     e.constructor == String ? e = n && "binary" === n.encoding ? n.bin.stringToBytes(e) : n.stringToBytes(e) : false ? e = Array.prototype.slice.call(e, 0) : Array.isArray(e) || (e = e.toString());
-    for (let s = t.bytesToWords(e), c = 8 * e.length, l = 1732584193, u = -271733879, f = -1732584194, d = 271733878, p = 0; p < s.length; p++) s[p] = 16711935 & (s[p] << 8 | s[p] >>> 24) | 4278255360 & (s[p] << 24 | s[p] >>> 8);
-    s[c >>> 5] |= 128 << c % 32,
-        s[14 + (c + 64 >>> 9 << 4)] = c;
-    for (let h = i_ff,
+    for (var s = t.bytesToWords(e), c = 8 * e.length, l = 1732584193, u = -271733879, f = -1732584194, d = 271733878, p = 0; p < s.length; p++) s[p] = 16711935 & (s[p] << 8 | s[p] >>> 24) | 4278255360 & (s[p] << 24 | s[p] >>> 8);
+    s[c >>> 5] |= 128 << c % 32, s[14 + (c + 64 >>> 9 << 4)] = c;
+    for (var h = i_ff,
              m = i_gg,
              g = i_hh,
              b = i_ii,
              p = 0; p < s.length; p += 16) {
-        let v = l,
+        var v = l,
             y = u,
             w = f,
             x = d;
@@ -141,25 +140,25 @@ i = function (e, n) {
     return n.endian([l, u, f, d])
 };
 i_ff = function (e, t, n, r, o, a, i) {
-    let s = e + (t & n | ~t & r) + (o >>> 0) + i;
+    var s = e + (t & n | ~t & r) + (o >>> 0) + i;
     return (s << a | s >>> 32 - a) + t
 };
 i_gg = function (e, t, n, r, o, a, i) {
-    let s = e + (t & r | n & ~r) + (o >>> 0) + i;
+    var s = e + (t & r | n & ~r) + (o >>> 0) + i;
     return (s << a | s >>> 32 - a) + t
 };
 i_hh = function (e, t, n, r, o, a, i) {
-    let s = e + (t ^ n ^ r) + (o >>> 0) + i;
+    var s = e + (t ^ n ^ r) + (o >>> 0) + i;
     return (s << a | s >>> 32 - a) + t
 };
 i_ii = function (e, t, n, r, o, a, i) {
-    let s = e + (n ^ (t | ~r)) + (o >>> 0) + i;
+    var s = e + (n ^ (t | ~r)) + (o >>> 0) + i;
     return (s << a | s >>> 32 - a) + t
 };
 
 exports.cryptopwd = function (password) {
-    let k1 = t.wordsToBytes(i(password, n));
-    let k2 = t.bytesToHex(k1);
-    let derivedKey = pbkdf2.pbkdf2Sync(password, k2, 2e3, 32, 'sha256');
+    var k1 = t.wordsToBytes(i(password, n));
+    var k2 = t.bytesToHex(k1);
+    var derivedKey = pbkdf2.pbkdf2Sync(password, k2, 2e3, 32, 'sha256');
     return derivedKey.toString("hex");
 };
