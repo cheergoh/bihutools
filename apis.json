@@ -1,0 +1,9 @@
+{
+  "follwUrl": "https://be02.bihu.com/bihube-pc/api/content/follow",
+  "loginUrl": "https://be02.bihu.com/bihube-pc/api/user/loginViaPassword",
+  "hostlistUrl": "https://be02.bihu.com/bihube-pc/api/content/show/hotArtList",
+  "fanslistUrl": "https://be03.bihu.com/bihube-pc/api/content/show/getUserFansList",
+  "unfollowUrl": "https://be03.bihu.com/bihube-pc/api/content/unFollow",
+  "myfollowUrl": "https://be02.bihu.com/bihube-pc/api/content/show/getUserFollowList",
+  "getUserArtList": "https://be02.bihu.com/bihube-pc/api/content/show/getUserArtList"
+}
